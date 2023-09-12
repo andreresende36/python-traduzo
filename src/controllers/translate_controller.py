@@ -45,11 +45,27 @@ def translate_text(text, source_language, target_language):
         translated_text = translator.translate(text)
         return translated_text
     except Exception as e:
-        print(f"Erro na tradução: {e}")
-        return "Erro na tradução"
+        print(f"Translation Error: {e}")
+        return "Translation Error"
 
 
 # Req. 6
 @translate_controller.route("/reverse", methods=["POST"])
 def reverse():
-    raise NotImplementedError
+    languages = LanguageModel.find()
+
+    text_to_translate = request.form.get("text-to-translate")
+    translate_from = request.form.get("translate-from")
+    translate_to = request.form.get("translate-to")
+    translated = translate_text(
+        text_to_translate, translate_from, translate_to
+    )
+
+    return render_template(
+        "index.html",
+        languages=languages,
+        text_to_translate=translated,
+        translate_from=translate_to,
+        translate_to=translate_from,
+        translated=text_to_translate,
+    )
