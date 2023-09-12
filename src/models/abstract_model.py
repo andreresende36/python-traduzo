@@ -1,3 +1,4 @@
+# type: ignore
 from pymongo.collection import ReturnDocument
 
 
@@ -41,4 +42,4 @@ class AbstractModel:
 
     @classmethod
     def drop(cls):
-        cls._collection.drop()
+        cls._collection.drop()  # type: ignore

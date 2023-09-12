@@ -1,10 +1,10 @@
 from .abstract_model import AbstractModel
-# from database.db import db
+from database.db import db
 
 
 # Req. 1
 class LanguageModel(AbstractModel):
-    _collection = 'languages'
+    _collection = db['languages']
 
     def __init__(self, data: dict[str, str]):
         super().__init__(data)
