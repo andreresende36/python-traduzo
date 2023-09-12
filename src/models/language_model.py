@@ -24,5 +24,4 @@ class LanguageModel(AbstractModel):
             {"name": language["name"], "acronym": language["acronym"]}
             for language in languages
         ]
-        print("aquiiiiiiii", language_list)
         return language_list
